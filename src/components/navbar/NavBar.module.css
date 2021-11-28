@@ -1,0 +1,35 @@
+.navBar{
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-right: 20px;
+}
+ 
+
+
+.navBar li {
+  margin: 0px 10px 0px 10px;
+}
+
+.navBar ul{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 15px;
+  list-style: none;
+}
+
+.navBar a{
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+.navBar button{
+  color: white;
+  background-color: red;
+  border: none;
+  font-weight: bold;
+  border-radius: 3px;
+  height: 20px;
+  width: 40px;
+}
