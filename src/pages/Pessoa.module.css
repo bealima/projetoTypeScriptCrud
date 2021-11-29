@@ -4,3 +4,45 @@
   align-items: center;
   
 }
+
+.pessoa form{
+  margin-top: 20px;
+}
+.pessoa label {
+  margin-right: 20px;
+  
+  
+}
+.card{  
+  width: 300px;
+  box-shadow: 3px 6px 6px gainsboro;
+  margin-top: 20px;
+  padding: 5px;
+  padding-left: 30px;
+}
+
+.card button {
+  margin-right: 20px;
+}
+
+.pessoa button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  background-color: red;
+  height: 20px;
+  width: 70px;
+  font-weight: bold;
+  
+}
+
+.pessoa button:hover {
+  border-radius: 3px;
+  box-shadow: 3px 6px 6px gainsboro;
+  cursor: pointer;
+  width: 70.2px ;
+  height: 20.2px;
+}
+

@@ -1,16 +1,16 @@
 import React, {createContext,useState} from "react"
-import { PessoaDTO } from "../model/PessoaDTO"
+import { ItemPessoaDTO } from "../model/PessoaDTO"
 
 interface IPessoaContext{
-  listPessoas:PessoaDTO['pessoas'];
-  setListPessoas:React.Dispatch<React.SetStateAction<PessoaDTO['pessoas']>>
+  listPessoas:ItemPessoaDTO[];
+  setListPessoas:React.Dispatch<React.SetStateAction<ItemPessoaDTO[]>>
 }
 
 const PessoaContext = createContext<IPessoaContext>({} as IPessoaContext);
 
 const PessoaProvider : React.FC<any> = ({children}) =>{
 
-  const [listPessoas,setListPessoas] = useState<PessoaDTO['pessoas']>([])
+  const [listPessoas,setListPessoas] = useState<ItemPessoaDTO[]>([])
   
   return(
     <PessoaContext.Provider value={{listPessoas,setListPessoas}}>

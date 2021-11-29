@@ -9,7 +9,7 @@ export interface PessoaDTO{
 
 }
 
-export interface PessoasDTO{
+export interface ItemPessoaDTO{
   
   cpf:string,
   dataNascimento: string,

@@ -26,20 +26,24 @@ const AuthProvider: React.FC<any> = ({children}) =>{
     api.defaults.headers.common['Authorization'] = data;
     navigate('/pessoa');
     setAuth(true)
-  }
+    
+  } 
+
 
   const handleLogout= async() =>  {
     localStorage.removeItem('token');
     api.defaults.headers.common['Authorization']= '';
     window.location.href = '/login'
     setAuth(false)
-  }
+
+  } 
+  
 
   if(loading){
    return(<h1>Loading...</h1>)
   }
   return(
-    <AuthContext.Provider value={{auth, handleLogin, handleLogout}}>
+    <AuthContext.Provider value={{auth, setAuth, handleLogin, handleLogout}}>
       {children}
     </AuthContext.Provider>
   );

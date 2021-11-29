@@ -1,17 +1,28 @@
-import { useEffect } from "react";
+import { Field, Form, Formik, FormikHelpers } from 'formik';
+import { useContext, useEffect, useState } from "react";
 import api from "../api";
-import styles from '../pages/Pessoa.module.css'
-import { PessoasDTO } from "../model/PessoaDTO";
-import { useState } from "react";
-import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { AuthContext } from "../context/AuthContext";
+import { ItemPessoaDTO } from "../model/PessoaDTO";
+import styles from '../pages/Pessoa.module.css';
+import moment from 'moment';
+import { PessoaContext } from '../context/IPessoaContext';
+
 
 const Pessoa = () => {
 
-  const[listPessoas, setListPessoas]= useState<PessoasDTO[]>([]);
+  const{auth, setAuth} = useContext<any>(AuthContext)
+
+  const{listPessoas, setListPessoas}= useContext(PessoaContext);
   const[isEdicao, setIsEdicao] = useState(false)
 
   useEffect(() => {
-   getListPessoas()
+    const token = localStorage.getItem('token');
+    if (token) {
+      api.defaults.headers.common['Authorization'] = token;
+    }
+    setAuth(true)
+    getListPessoas()
+
   },[])
 
   const getListPessoas = async () => {
@@ -19,7 +30,7 @@ const Pessoa = () => {
     setListPessoas(data);
   }
 
-  const handleCreate = async (values: PessoasDTO) =>{
+  const handleCreate = async (values: ItemPessoaDTO) =>{
     await api.post('/pessoa',values);
     getListPessoas();
   };
@@ -29,12 +40,12 @@ const Pessoa = () => {
     getListPessoas()
   }
 
-  const updating = (pessoa: PessoasDTO)=>{
+  const updating = (pessoa: ItemPessoaDTO)=>{
     setInitialValues(pessoa)
     setIsEdicao(true)
   }
 
-  const handleUpdate = async(values: PessoasDTO)=>{
+  const handleUpdate = async(values: ItemPessoaDTO)=>{
     await api.put('/pessoa/'+ values.idPessoa, values)
     getListPessoas()
     setIsEdicao(false)
@@ -58,8 +69,8 @@ const Pessoa = () => {
          initialValues={initialValues}
          enableReinitialize= {true}
          onSubmit={async(
-          values: PessoasDTO,
-          { setSubmitting }: FormikHelpers<PessoasDTO>
+          values: ItemPessoaDTO,
+          { setSubmitting }: FormikHelpers<ItemPessoaDTO>
         ) => {
           if (!isEdicao){
             await handleCreate(values)
@@ -86,7 +97,7 @@ const Pessoa = () => {
            </div>
            <div>
             <label htmlFor="dataNascimento">Data de Nascimento</label>
-            <Field id="dataNascimento" name="dataNascimento" />
+            <Field id="dataNascimento" name="dataNascimento" type="date"/>
            </div>
            <div>
             <label htmlFor="email">E-mail</label>
@@ -97,17 +108,17 @@ const Pessoa = () => {
            
          </Form>
        </Formik>
-
+       
+        
         {listPessoas.map(pessoa =>(
-          <div  key={pessoa.idPessoa} style={{marginBottom: 20}}>
+          <div  key={pessoa.idPessoa} className={styles.card}>
             <p>{pessoa.nome}</p>
             <p>{pessoa.cpf}</p>
-            <p>{pessoa.dataNascimento}</p>
+            <p>{moment(pessoa.dataNascimento).format("DD/MM/YYYY")}</p>
             <p>{pessoa.email}</p>
             <div>
               <button onClick={() => handleDelete(pessoa.idPessoa)}>Deletar</button>
-            </div>
-            <div>
+            
               <button onClick={() => updating(pessoa)}>Editar</button>
             </div>
           </div>

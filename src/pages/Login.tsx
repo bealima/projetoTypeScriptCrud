@@ -33,7 +33,7 @@ const Login = ()=>{
             </div>
             <div>
               <label htmlFor="senha">Senha </label>
-              <Field id="senha" name="senha"  />
+              <Field id="senha" name="senha" type="password" />
             </div>
             <button type="submit">Submit</button>
           </Form>
