@@ -88,19 +88,19 @@ const Pessoa = () => {
        >
          <Form>
            <div>
-            <label htmlFor="nome">Nome</label>
+            <label htmlFor="nome">Nome:</label>
             <Field id="nome" name="nome" />
            </div>
            <div>
-            <label htmlFor="cpf">CPF</label>
+            <label htmlFor="cpf">CPF:</label>
             <Field id="cpf" name="cpf" />
            </div>
            <div>
-            <label htmlFor="dataNascimento">Data de Nascimento</label>
+            <label htmlFor="dataNascimento">Data de Nascimento:</label>
             <Field id="dataNascimento" name="dataNascimento" type="date"/>
            </div>
            <div>
-            <label htmlFor="email">E-mail</label>
+            <label htmlFor="email">E-mail:</label>
             <Field id="email" name="email" />
            </div>
            {!isEdicao && <button type="submit">Cadastrar</button>}
