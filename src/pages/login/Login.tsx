@@ -1,12 +1,17 @@
 import { Formik, Field, Form, FormikHelpers } from 'formik';
-import {useContext} from 'react'
-import {AuthContext} from '../context/AuthContext'
-import { LoginDTO } from '../model/LoginDTO';
-import styles from '../pages/Login.module.css'
+import {useContext, useEffect} from 'react'
+import {AuthContext} from '../../context/AuthContext'
+import { LoginDTO } from '../../model/LoginDTO';
+import styles from '../login/Login.module.css'
 
 const Login = ()=>{
-  const {handleLogin} = useContext<any>(AuthContext)
+  const {handleLogin, auth} = useContext<any>(AuthContext)
   
+  useEffect(()=>{
+    if (auth){
+      window.location.href='/pessoa';
+    }
+  },[])
   return(
     <div className='containerContent'>
       <div className={styles.login}>

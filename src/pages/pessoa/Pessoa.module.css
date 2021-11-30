@@ -5,9 +5,8 @@
   margin-bottom: 20px;
   
 }
-
 .pessoa form > div{
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .pessoa label {
   margin-right: 10px;
@@ -15,9 +14,6 @@
 .pessoa input {
   padding-left: 5px;
   height: 15px;
-  
-
-  
 }
 .card{  
   width: 300px;
@@ -26,11 +22,9 @@
   padding: 5px;
   padding-left: 30px;
 }
-
 .card button {
   margin-right: 20px;
 }
-
 .pessoa button {
   margin-top: 15px;
   margin-bottom: 15px;

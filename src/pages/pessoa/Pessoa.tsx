@@ -1,11 +1,11 @@
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import { useContext, useEffect, useState } from "react";
-import api from "../api";
-import { AuthContext } from "../context/AuthContext";
-import { ItemPessoaDTO } from "../model/PessoaDTO";
-import styles from '../pages/Pessoa.module.css';
+import api from "../../api";
+import { AuthContext } from "../../context/AuthContext";
+import { ItemPessoaDTO } from "../../model/PessoaDTO";
+import styles from '../pessoa/Pessoa.module.css';
 import moment from 'moment';
-import { PessoaContext } from '../context/IPessoaContext';
+import { PessoaContext } from '../../context/IPessoaContext';
 
 
 const Pessoa = () => {
@@ -18,11 +18,9 @@ const Pessoa = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      api.defaults.headers.common['Authorization'] = token;
+      setAuth(true)
     }
-    setAuth(true)
     getListPessoas()
-
   },[])
 
   const getListPessoas = async () => {

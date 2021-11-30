@@ -15,6 +15,7 @@ const AuthProvider: React.FC<any> = ({children}) =>{
     const token = localStorage.getItem('token');
     if (token) {
       api.defaults.headers.common['Authorization'] = token;
+      setAuth(true)
     }
     setLoading(false)
   },[])
@@ -24,7 +25,7 @@ const AuthProvider: React.FC<any> = ({children}) =>{
     const {data} = await api.post('/auth', user);
     localStorage.setItem('token', data )
     api.defaults.headers.common['Authorization'] = data;
-    navigate('/pessoa');
+    window.location.href = '/pessoa'
     setAuth(true)
     
   } 
